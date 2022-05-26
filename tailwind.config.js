@@ -56,6 +56,13 @@ module.exports = {
                     700: '#616161',
                     800: '#5A5A5A',
                     900: '#525252',
+                }, 
+                'light':{
+                    1: '#fff',
+                    2: '#f2f4f4',
+                    3 : '#dfe3e7' , //border
+                    4: '#bcc2c8', //text
+                    5:'#475f7b',
                 }
             },
             fontFamily: {
