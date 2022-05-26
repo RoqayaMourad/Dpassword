@@ -1,0 +1,183 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+
+/* Core CSS required for Ionic components to work properly */
+
+// @import "@ionic/angular/css/core.css";
+// /* Basic CSS for apps built with Ionic */
+// @import "@ionic/angular/css/normalize.css";
+// @import "@ionic/angular/css/structure.css";
+// @import "@ionic/angular/css/typography.css";
+// @import '@ionic/angular/css/display.css';
+// @import 'tailwindcss/base';
+// @import 'tailwindcss/components';
+// @import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional CSS utils that can be commented out */
+
+// @import "~@ionic/angular/css/padding.css";
+// @import "~@ionic/angular/css/float-elements.css";
+// @import "~@ionic/angular/css/text-alignment.css";
+// @import "~@ionic/angular/css/text-transformation.css";
+// @import "~@ionic/angular/css/flex-utils.css";
+
+.plusIconDiv {
+  svg {
+    fill: #9a9a9a;
+  }
+}
+.deleteIconDiv {
+  svg {
+    stroke: #9a9a9a;
+  }
+}
+.badgeIconDiv {
+  svg {
+    stroke:#d86f82;
+  }
+}
+.sidebarSvgDiv {
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke: #4ECCA3;
+  }
+}
+.itemDetailsBtnsIcon{
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+.fieldIcons{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  transform-origin: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  button{
+    margin-right:0.25rem;
+  }
+}
+.revealDiv , .copyDiv{
+  svg {
+    // position: absolute;
+    // right: 3%;
+    // bottom: 32%;
+    stroke: #ABABAB;
+    &:hover{
+       @apply stroke-cyan-2;
+    }
+  }
+}
+.revealDiv{
+  svg {
+    // right:15%;
+  }
+}
+
+.singleListItem {
+  &:hover {
+    .itemName {
+      @apply text-dark-4;
+    }
+    .itemUrl {
+      @apply text-grey-600;
+    }
+    .itemEmail {
+      @apply text-grey-500;
+    }
+  }
+}
+.isActive {
+  .itemName {
+    @apply text-dark-4;
+  }
+  .itemUrl {
+    @apply text-grey-600;
+  }
+  .itemEmail {
+    @apply text-grey-500;
+  }
+
+}
+.createItemModal , .loginRegisterModal , .settingsModal , .genpasswordModal , .alert-class {
+  &::part(backdrop) {
+    background-color: #121212;
+    --backdrop-opacity: 0.8;
+  }
+}
+.createItemModal {
+  &::part(content){
+    width: 40%;
+    height: 88%;
+    margin: auto;
+  }
+}
+.loginRegisterModal{
+  &::part(content){
+    width: 60%;
+    height: 80%;
+    margin: auto;
+  }
+}
+
+.settingsModal {
+  &::part(content){
+    width: 60%;
+    height: 80%;
+    margin: auto;
+  }
+}
+.genpassModal{
+  &::part(backdrop){
+    --backdrop-opacity:0.4;
+  }
+  &::part(content){
+    width: 30%;
+    height: 17%;
+    margin: auto;
+  }
+}
+.genpassDiv {
+  label {
+    margin-bottom: 0.5rem
+  }
+  .revealDiv{
+    svg {
+      right:13%;
+    }
+  }
+}
+.newItemForm {
+  label{
+    @apply text-base;
+  }
+}
+.menuActive {
+  .menuItem{
+    @apply bg-cyan-2 text-dark-4 cursor-pointer transition-all duration-75 ease-in-out;
+    svg {
+      stroke: #121212;
+    }
+  }
+}
+
+input::placeholder, textarea::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  opacity: 0.3 !important; /* Firefox */
+}
