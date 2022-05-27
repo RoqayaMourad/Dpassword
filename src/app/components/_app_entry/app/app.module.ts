@@ -40,6 +40,7 @@ import { SettingsModalComponent } from '../../_dashboard/_sidebar/settings-modal
 import { GenpasswordModalComponent } from '../../_dashboard/_sidebar/genpassword-modal/genpassword-modal.component';
 import { SingleFolderItemComponent } from '../../_dashboard/_sidebar/single-folder-item/single-folder-item.component';
 import { Web3Store } from 'src/app/services/ipfs/web3-storage';
+import { GeneratedOwnershipTokenComponent } from '../../_shared/generated-ownership-token/generated-ownership-token.component';
 
 @NgModule({
 
@@ -80,6 +81,7 @@ import { Web3Store } from 'src/app/services/ipfs/web3-storage';
     SettingsModalComponent,
     GenpasswordModalComponent,
     SingleFolderItemComponent,
+    GeneratedOwnershipTokenComponent,
   ],
 
   entryComponents: [
