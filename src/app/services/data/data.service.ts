@@ -1,4 +1,4 @@
-import { IIPFSState } from './../../interfaces/IPFS.interface';
+import { IIPFSState, IIPNSObj } from './../../interfaces/IPFS.interface';
 import { Api } from './../api/api';
 import { Security } from 'src/app/models/security.class';
 import { HelperService } from 'src/app/services/util/helper';
@@ -14,12 +14,18 @@ import { IUser } from 'src/app/interfaces/user.interface';
 import { IEnctyptedDBObject, IMainDB } from 'src/app/interfaces/interfaces';
 import { HttpEventType, HttpProgressEvent, HttpResponse } from '@angular/common/http';
 import { Web3Store } from '../ipfs/web3-storage';
+import { Revision } from 'web3.storage/name';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private api: Api, private web3:Web3Store) {
+  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private web3: Web3Store) {
+    window.onbeforeunload = () => {
+      if (this.IPFSState == "Uploading") {
+        return "You data is still uploading, are you sure?"
+      }
+    }
   }
 
   user: User = new User();
@@ -34,10 +40,9 @@ export class DataService {
    * @memberof DataService
    */
   private MASTER_PASSWORD: string;
-  private PRIVATE_KEY: string;
-  private CID: string;
-  private RECORD_FILENAME: string;
-  private CURRENT_RECORD: string;
+  public CID: string;
+  public IPNSObj: IIPNSObj;
+  public CURRENT_REVISION: Revision;
   /**
    * The main Db Observable used across the app
    *
@@ -54,10 +59,10 @@ export class DataService {
   async initDb() {
     let db_json: IMainDB;
     // try to get db from local storage
-    try{
+    try {
       db_json = await this.getDbFromStorage();
       return await this.setDb(db_json);
-    }catch{
+    } catch {
       return await this.setDb();
     }
   }
@@ -218,23 +223,23 @@ export class DataService {
    * Upload the current db to the IPFS network
    * @memberof DataService
    */
-  async uploadDbToIPFS() {
+  async uploadDbToIPFS(updateCid = true) {
     let str = JSON.stringify(this.mainDb);
     let lastState = this.IPFSState;
     this.IPFSState = "Uploading";
     let encryptedDbString: any = Security.encryptString(str, this.MASTER_PASSWORD);
     // TODO: Encrypt with private key
     const buffer = HelperService.Base64ToUint8Array(JSON.stringify(encryptedDbString));
-    let file =  new File([buffer.buffer], "db", { type: 'text/plain' })
+    let file = new File([buffer.buffer], "db", { type: 'text/plain' })
     // upload file
 
     try {
       const cidString = await this.web3.storeFiles(file);
       this.CID = cidString;
-      this.IPFSState = "Synced";
-      this.updateCID();
+      this.IPFSState = "Uploading";
+      if (updateCid) this.updateCID();
       return true
-    } catch(e) {
+    } catch (e) {
       console.error(e)
     }
     this.IPFSState = lastState;
@@ -286,10 +291,16 @@ export class DataService {
     }
   }
 
-  async updateCID(){
+  async updateCID() {
+    await this.web3.updateRecord(this.IPNSObj.privatekey, this.CURRENT_REVISION, this.CID)
+    this.IPFSState = "Synced";
   }
 
-  async getCID(){
+  async getCID() {
+    let response = await this.web3.getRecord(this.IPNSObj.filename);
+    this.CID = response.revision.value
+    this.CURRENT_REVISION = response.revision
+    return response;
   }
 
   //#endregion
