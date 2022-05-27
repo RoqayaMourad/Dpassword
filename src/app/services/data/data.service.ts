@@ -3,7 +3,6 @@ import { Api } from './../api/api';
 import { Security } from 'src/app/models/security.class';
 import { HelperService } from 'src/app/services/util/helper';
 import { User } from './../../models/user.class';
-import { IPFSService } from './ipfs.service';
 import { MainDB } from './../../models/maindb.class';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
@@ -19,7 +18,7 @@ import { HttpEventType, HttpProgressEvent, HttpResponse } from '@angular/common/
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private ipfs: IPFSService, private api: Api) {
+  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private api: Api) {
   }
 
   user: User = new User();
