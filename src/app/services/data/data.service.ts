@@ -229,7 +229,7 @@ export class DataService {
     this.IPFSState = "Uploading";
     let encryptedDbString: any = Security.encryptString(str, this.MASTER_PASSWORD);
     // TODO: Encrypt with private key
-    const buffer = HelperService.Base64ToUint8Array(JSON.stringify(encryptedDbString));
+    const buffer = HelperService.Base64ToUint8Array(encryptedDbString);
     let file = new File([buffer.buffer], "db", { type: 'text/plain' })
     // upload file
 
