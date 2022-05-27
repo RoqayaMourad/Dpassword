@@ -13,15 +13,17 @@ import { Base64 } from 'js-base64';
 import { IUser } from 'src/app/interfaces/user.interface';
 import { IEnctyptedDBObject, IMainDB } from 'src/app/interfaces/interfaces';
 import { HttpEventType, HttpProgressEvent, HttpResponse } from '@angular/common/http';
+import { Web3Store } from '../ipfs/web3-storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private api: Api) {
+  constructor(private alertController: AlertController, private toastController: ToastController, public loadingController: LoadingController, private storage: StorageService, private api: Api, private web3:Web3Store) {
   }
 
   user: User = new User();
+  readonlymode = false;
   filter$: BehaviorSubject<string> = new BehaviorSubject("")
   setSearch$: BehaviorSubject<string> = new BehaviorSubject("")
   /**
@@ -32,6 +34,10 @@ export class DataService {
    * @memberof DataService
    */
   private MASTER_PASSWORD: string;
+  private PRIVATE_KEY: string;
+  private CID: string;
+  private RECORD_FILENAME: string;
+  private CURRENT_RECORD: string;
   /**
    * The main Db Observable used across the app
    *
@@ -213,56 +219,26 @@ export class DataService {
    * @memberof DataService
    */
   async uploadDbToIPFS() {
-    // TODO:Encrypt the current db with MASTER_PASSWORD
     let str = JSON.stringify(this.mainDb);
     let lastState = this.IPFSState;
     this.IPFSState = "Uploading";
     let encryptedDbString: any = Security.encryptString(str, this.MASTER_PASSWORD);
-    let enctyptedDBObject: IEnctyptedDBObject = { data: encryptedDbString }
-
-    // the following conversion supports arabic characters, emojis and Chinese and asian character
-    // Object ==> String ==> Base64 ==> ArrayBuffer ==> File
-
-    // Convert the encrypted db to string
-    let enctyptedStringfiedDBObject = JSON.stringify(enctyptedDBObject);
-
-    // encode the string to base64
-    let strBase64 = Base64.encode(enctyptedStringfiedDBObject)
-
-    // convert the base64 string to file formate
-    // var blob = new Blob([strBase64], { type: 'text/plain' });
-    // var file = new File([blob], HelperService.makeid(), { type: "text/plain" });
-
+    // TODO: Encrypt with private key
+    const buffer = Buffer.from(JSON.stringify(encryptedDbString));
+    let file =  new File([buffer], "db", { type: 'text/plain' })
     // upload file
-    const sec = new Security();
-    const secureAuthObject = sec.generateSecureAuthObject(this.user.email, this.MASTER_PASSWORD)
-    const dbObject = {
-      secureAuthObject,
-      encrypteddb:strBase64,
-      db_version: this.mainDb.objectVersionId
-    }
-    // Start uploading
-    return new Promise((resolve, reject) => {
-      this.api.post(`ipfs/store/db/`, dbObject).subscribe(
-        async (response) => {
-            // when file upload is successful set the user to local storage and dismiss loading
-            const body = response;
-            if (body.success) {
-              await this.setUser(body.data);
-              this.IPFSState = "Synced";
-              resolve(body.data)
-            } else {
-              this.IPFSState = lastState;
-              reject("Faild to update DB");
-            }
-        },
-        e => {
-          this.IPFSState = lastState;
-          reject("Faild to update DB");
-        }
-      )
-    })
 
+    try {
+      const cidString = await this.web3.storeFiles(file);
+      this.CID = cidString;
+      this.IPFSState = "Synced";
+      this.updateCID();
+      return true
+    } catch(e) {
+      console.error(e)
+    }
+    this.IPFSState = lastState;
+    return false
   }
 
   /**
@@ -271,32 +247,28 @@ export class DataService {
    */
   async getDbFromIPFS() {
     // upload file
-    const sec = new Security();
-    const secureAuthObject = sec.generateSecureAuthObject(this.user.email, this.MASTER_PASSWORD);
     let lastState = this.IPFSState;
     this.IPFSState = "Downloading";
-    // Start Downloading the encrypted DB
-    return new Promise((resolve, reject) => {
-      this.api.post<IEnctyptedDBObject>(`ipfs/retrive/db/`, { secureAuthObject }).subscribe(r => {
-        if (r.success && r.data) {
-          let enctyptedDBObject: IEnctyptedDBObject = r.data
-          // TODO:Decrypt the current db with MASTER_PASSWORD
-          let decryptedDbString: any = Security.decryptString(enctyptedDBObject.data, this.MASTER_PASSWORD);
-          let mainDb = JSON.parse(decryptedDbString);
-          this.setDb(mainDb);
-          resolve(true);
-          this.IPFSState = "Synced";
-          return;
-        }
-        this.IPFSState = lastState;
-        reject(false);
-      },
-        e => {
-          this.IPFSState = lastState;
-          reject(e)
-        }
-      )
-    })
+    try {
+      // retrive and convert file to text
+      const files = await this.web3.retrieveFiles(this.CID);
+      let buffer = await files[0].arrayBuffer();
+      let blob_file = new Blob([buffer], { type: 'text/plain' });
+      let encryptedDbString = await blob_file.text();
+      // decrypt text
+      const dbstring = Security.decryptString(encryptedDbString, this.MASTER_PASSWORD)
+      // parse to DB
+      let db = JSON.parse(dbstring)
+      // set global db
+      this.setDb(db)
+      this.IPFSState = "Synced";
+      return true;
+    } catch (error) {
+      console.error(error)
+    }
+
+    this.IPFSState = lastState;
+    return false
   }
 
   /**
@@ -312,6 +284,12 @@ export class DataService {
     if (this.user.db_version && this.mainDb.objectVersionId < this.user.db_version) {
       await this.getDbFromIPFS();
     }
+  }
+
+  async updateCID(){
+  }
+
+  async getCID(){
   }
 
   //#endregion

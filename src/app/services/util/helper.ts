@@ -1,3 +1,4 @@
+import { IIPNSObj } from './../../interfaces/IPFS.interface';
 export class HelperService {
 
   static generate_otp() {
@@ -116,4 +117,46 @@ export class HelperService {
     }
     txt.remove();
   }
+
+  // static uni8ToBase64(array:Iterable<number>){
+  //   var u8 = new Uint8Array(array);
+  //   var decoder = new TextDecoder('utf8');
+  //   var b64encoded = btoa(decoder.decode(u8));
+  //   return b64encoded;
+  // }
+  static ToBase64(u8) {
+    return btoa(String.fromCharCode.apply(null, u8));
+  }
+
+  static FromBase64(str) {
+    return atob(str).split('').map(function (c) {
+      return c.charCodeAt(0);
+    });
+  }
+
+  static BufferToBase64(bytes:Iterable<number>){
+    var u8 = new Uint8Array(bytes);
+    var decoder = new TextDecoder('utf8');
+    var b64encoded = btoa(decoder.decode(u8));
+    return b64encoded;
+  }
+
+  static Base64ToUint8Array(base64){
+    var encoder = new TextEncoder();
+    var u8  = encoder.encode(base64)
+    return u8;
+  }
+
+  static decodeFileNameAndPrivateKey(ownershipToken:string):IIPNSObj{
+    let string = atob(ownershipToken);
+    let IPNSObj:IIPNSObj = JSON.parse(string)
+    return IPNSObj;
+  }
+
+  static encodeFileNameAndPrivateKey(IPNSObj:IIPNSObj):string{
+    let string = JSON.stringify(IPNSObj)
+    let base64 = btoa(string);
+    return base64;
+  }
+
 }

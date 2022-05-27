@@ -28,21 +28,20 @@
         <div>
           <!-- Login Tab -->
           <div *ngIf="shown_form == 'login'" class="active">
-            <form class="flex flex-col" [formGroup]="login_form" (ngSubmit)="login()">
+            <form class="flex flex-col" [formGroup]="login_form">
               <div class="mb-6">
-                <app-input-field label="Email" placeholder="" type="email" formControlName="email"
-                  ngDefaultControl></app-input-field>
-              </div>
-
-              <div class="mb-6">
-                <app-input-field label="Password" type="password" formControlName="password"
+                <app-input-field label="Master Password" type="password" formControlName="password"
                   ngDefaultControl [showReveal]="true" [showCopy]="true"></app-input-field>
               </div>
 
+              <div class="mb-6">
+                <app-input-field label="Private Key" placeholder="" type="text" formControlName="privatekey"
+                  ngDefaultControl></app-input-field>
+              </div>
 
-              <div class="flex">
+              <div class="flex mb-6">
                 <div class="w-full">
-                  <button type="submit"
+                  <button type="submit" (click)="login()"
                     class="w-full rounded-lg px-6 py-2 font-medium text-sm bg-cyan-2 text-white hover:bg-light-grey-600 transition-all duration-75 ease-in-out">Login</button>
                 </div>
               </div>
@@ -53,11 +52,6 @@
           <!-- Register Form -->
           <div *ngIf="shown_form == 'register'" class="">
             <form class="" [formGroup]="register_form" (ngSubmit)="register()">
-
-              <div class="mb-6">
-                <app-input-field label="Email" placeholder="" type="email" formControlName="email"
-                  ngDefaultControl></app-input-field>
-              </div>
               <div class="mb-6">
                 <div class="relative">
                   <app-input-field label="Password" type="password" formControlName="password"
@@ -74,7 +68,7 @@
               <div class="flex">
                 <div class="w-full">
                   <button type="submit"
-                    class="w-full rounded-lg px-6 py-2 font-medium text-sm bg-cyan-2 text-white hover:bg-light-grey-600 transition-all duration-75 ease-in-out">Register</button>
+                    class="w-full rounded-lg px-6 py-2 font-medium text-sm bg-cyan-2 text-white hover:bg-light-grey-600 transition-all duration-75 ease-in-out">Generate Private Key</button>
                 </div>
               </div>
             </form>
