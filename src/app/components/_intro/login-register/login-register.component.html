@@ -51,7 +51,7 @@
 
           <!-- Register Form -->
           <div *ngIf="shown_form == 'register'" class="">
-            <form class="" [formGroup]="register_form" (ngSubmit)="register()">
+            <form class="" [formGroup]="register_form" (ngSubmit)="generateToken()">
               <div class="mb-6">
                 <div class="relative">
                   <app-input-field label="Password" type="password" formControlName="password"
