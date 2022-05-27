@@ -121,16 +121,15 @@ $app-theme: mat.define-light-theme((
   --ion-color-light-tint: #f5f6f9;
 }
 
-@media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
    * -------------------------------------------
    */
 
   body {
-    --ion-color-primary: #f4f5f8;
+    --ion-color-primary: #000000;
     --ion-color-primary-rgb: 244, 245, 248;
-    --ion-color-primary-contrast: #000000;
+    --ion-color-primary-contrast: #f4f5f8;
     --ion-color-primary-contrast-rgb: 0, 0, 0;
     --ion-color-primary-shade: #d7d8da;
     --ion-color-primary-tint: #f5f6f9;
@@ -205,8 +204,8 @@ $app-theme: mat.define-light-theme((
    * -------------------------------------------
    */
 
-  
-}
+
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
