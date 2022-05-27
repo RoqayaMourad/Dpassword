@@ -1,0 +1,127 @@
+<ion-content>
+  <div class="p-4">
+    <div *ngIf="currentItem" class="rounded-md p-4 mt-2">
+
+      <app-item-header [title]='currentItem.name' [iconUrl]="currentItem.icon"></app-item-header>
+
+
+      <form class="" [formGroup]="DetailsForm">
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showName" label="Name" placeholder="Name" type="text" formControlName="name" ngDefaultControl></app-input-field>
+        </div>
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showEmail" label="Email" placeholder="Email" type="email" formControlName="email" ngDefaultControl></app-input-field>
+        </div>
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showUrl" label="Website Url" placeholder="https://example.com" type="url" formControlName="url" ngDefaultControl></app-input-field>
+        </div>
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showPassword" label="Password" type="password" formControlName="password"
+            ngDefaultControl [showReveal]="true" [showCopy]="true" [showGen]="formMode === 'edit'"></app-input-field>
+        </div>
+
+        <!-- Card -->
+        <div class="mb-6">
+          <app-input-field *ngIf="showCard" label="Card Number" type="text" formControlName="cardnumber"
+            ngDefaultControl></app-input-field>
+        </div>
+        <div class="mb-6">
+          <app-input-field *ngIf="showCard" label="Card Expiration" type="text" formControlName="cardexpiration"
+            ngDefaultControl></app-input-field>
+        </div>
+        <div class="mb-6">
+          <app-input-field *ngIf="showCard" label="CVV" type="text" formControlName="cardcvv"
+            ngDefaultControl></app-input-field>
+        </div>
+
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showDescription" label="Description" placeholder="write any note here" type="textarea" formControlName="description" ngDefaultControl></app-input-field>
+        </div>
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showNote" label="Note" placeholder="" type="textarea" formControlName="note" ngDefaultControl></app-input-field>
+        </div>
+
+        <div class="mb-6">
+          <app-input-field *ngIf="showDocument" label="Upload file" type="file" subtext="Lorem ipsum dolor sit amet, consectetur elit." formControlName="file" ngDefaultControl></app-input-field>
+        </div>
+
+
+<!-- edit buttons row -->
+        <div class="flex">
+          <div *ngIf="formMode === 'display'" class="justify-end flex w-full">
+            <button (click)="editMode()" class="py-1.5 px-6 flex justify-center items-center text-cyan-2 border border-cyan-2 transition ease-in duration-200 text-center text-base font-normal focus:outline-none hover:border-transparent hover:bg-grey-500 hover:text-light-text rounded-lg ">
+              <div class="mr-2" [inlineSVG]="'/assets/icon/item-details/edit.svg'"></div>
+              <div>
+                Edit
+              </div>
+            </button>
+          </div>
+
+
+        <div *ngIf="formMode === 'edit'" class="justify-between flex w-full">
+          <div class="">
+            <button type="cancel" (click)="deleteItem()" class="rounded-lg inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent border border-grey-100 hover:bg-error-1 hover:text-error-4 hover:border-transparent transition ease-in duration-200">
+              <div class="mr-2" [inlineSVG]="'/assets/icon/item-details/delete.svg'"></div>
+              <div>
+                Delete
+              </div>
+            </button>
+          </div>
+
+
+
+          <div class="flex">
+            <div>
+              <button type="button" (click)="submitEditItem()"
+                class="rounded-lg inline-flex items-center py-2 px-6 text-sm font-medium text-light-text bg-cyan-2 border border-cyan-2 hover:bg-transparent hover:text-cyan-2 transition ease-in duration-200 mr-4">
+                <div class="mr-2" [inlineSVG]="'/assets/icon/item-details/save.svg'"></div>
+                <div>
+                  Save
+                </div>
+              </button>
+            </div>
+
+            <div>
+              <button type="cancel" (click)="updateFields()"
+                class="rounded-lg inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent border border-light-grey-100 hover:bg-light-grey-600 hover:text-gray-200 transition ease-in duration-200">
+                <div class="mr-2" [inlineSVG]="'/assets/icon/item-details/cancel.svg'"></div>
+                <div>
+                  Cancel
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+
+        </div>
+
+        <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+
+        <div class="flex rounded-md shadow-sm justify-end ml-auto" role="group">
+          <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent rounded-l-lg border border-light-grey-100 hover:bg-cyan-2 hover:text-light-text hover:border-transparent transition ease-in duration-200 " (click)="comingSoon()">
+            <div class="mr-2 itemDetailsBtnsIcon" [inlineSVG]="'/assets/icon/item-details/history.svg'"></div>
+            History
+          </button>
+          <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent border-b border-t border-light-grey-100 hover:bg-cyan-2 hover:text-light-text hover:border-transparent transition ease-in duration-200" (click)="comingSoon()">
+            <div class="mr-2 itemDetailsBtnsIcon" [inlineSVG]="'/assets/icon/item-details/share.svg'"></div>
+            Share
+          </button>
+          <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent rounded-r-md border border-light-grey-100 hover:bg-cyan-2 hover:text-light-text hover:border-transparent transition ease-in duration-200" (click)="comingSoon()">
+            <div class="mr-2 itemDetailsBtnsIcon" [inlineSVG]="'/assets/icon/item-details/link.svg'"></div>
+            Generate Link
+          </button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</ion-content>
