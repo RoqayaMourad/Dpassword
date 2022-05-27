@@ -1,0 +1,18 @@
+<div class="flex">
+  <form class="relative flex-grow mr-4" [formGroup]="filterForm">
+    <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
+      <svg class="h-6 w-6 text-light-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+          stroke="#bcc2c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        </path>
+      </svg>
+    </span>
+    <input formControlName="searchField" class="form-input w-full bg-light-1 text-light-5 py-3 rounded-md pl-10 pr-4 focus:border-light-grey-100 shadow-light-grey-100 shadow-md" type="text" placeholder="Search">
+  </form>
+  <div class="add-item flex justify-center items-center">
+    <button (click)="createItem()" class="font-medium text-lg  p-2.5 text-light-text ml-2 flex bg-cyan-2 rounded-md shadow-light-grey-100 shadow-md ">
+       <div class="mr-[3px] mt-[3px]" [inlineSVG]="'/assets/icon/plus.svg'"></div>  Add Item
+    </button>
+  </div>
+</div>
