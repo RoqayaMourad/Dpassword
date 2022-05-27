@@ -1,0 +1,121 @@
+<ion-content>
+  <div class="bg-grey-400 rounded-md pt-8 px-16 my-auto h-full">
+    <form class="newItemForm" [formGroup]="DetailsForm" (ngSubmit)="onSubmit()">
+
+      <div class="flex">
+        <div class="justify-center w-full">
+          <img src="/assets/brand/logo-rounded.svg" width="50%" class="mx-auto" alt="" srcset="">
+        </div>
+      </div>
+
+      <!-- ================= Select Type -->
+      <div class="mx-auto mb-6 mt-4">
+        <label class="block mb-2 text-lg font-medium text-cyan-2">Select Type</label>
+        <!-- component -->
+        <div class="relative w-full" (clickOutside)="closeSelect()">
+          <!-- trigger button -->
+          <button
+            type="button"
+            (click)="toggleSelect()"
+            class="flex w-full items-center justify-between shadow-sm text-light-grey-100 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-grey-500 p-2.5"
+            [ngClass]="typeSelectOpen?'':'ring-gray-300'">
+            <span>{{type}}</span>
+            <!-- X icon svg -->
+            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <!-- list items -->
+          <ul class="z-2 absolute w-full rounded bg-grey-500 z-50" *ngIf="typeSelectOpen">
+            <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Password')">
+              Password
+            </li>
+            <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Card')">
+              Card
+            </li>
+            <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Bank Account')">
+              Bank Account
+            </li>
+            <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Note')">
+              Note
+            </li>
+            <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Document')">
+              Document/File
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- Select Type ================= -->
+      <!-- Name Field -->
+
+
+      <!-- spliter -->
+      <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+
+
+      <!-- App header
+<app-item-header [iconUrl]="iconUrl" title="Website Name"></app-item-header>
+-->
+
+      <!-- Name Field -->
+      <div class="mb-6">
+        <app-input-field *ngIf="showName" label="Name" placeholder="Name" type="text" formControlName="name" ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Url Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showUrl" label="Website Url" placeholder="https://example.com" type="url" formControlName="url" ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Email Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showEmail" label="Email" placeholder="Email" type="email" formControlName="email" ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Password Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showPassword" label="Password" placeholder="" type="password" formControlName="password" ngDefaultControl [showReveal]="true" [showCopy]="true" [showGen]="true"></app-input-field>
+      </div>
+
+      <!-- Card -->
+      <div class="mb-6">
+        <app-input-field *ngIf="showCard" label="Card Number" type="text" formControlName="cardnumber"  placeholder="14 Digit number"
+          ngDefaultControl></app-input-field>
+      </div>
+      <div class="mb-6">
+        <app-input-field *ngIf="showCard" label="Card Expiration" type="text" formControlName="cardexpiration"  placeholder="MM/YY"
+          ngDefaultControl></app-input-field>
+      </div>
+      <div class="mb-6">
+        <app-input-field *ngIf="showCard" label="CVV" type="text" formControlName="cardcvv"  placeholder="xxx"
+          ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Description Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showDescription" label="Description" placeholder="Write Your Description Here ..." type="textarea" formControlName="description" ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Note Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showNote" label="Note" placeholder="Write Your Note Here ..." type="textarea" formControlName="note" ngDefaultControl></app-input-field>
+      </div>
+
+      <!-- Document Field-->
+      <div class="mb-6">
+        <app-input-field *ngIf="showDocument" label="Upload file" type="file" subtext="Your Personal Files Will be Safe Here" formControlName="file" ngDefaultControl></app-input-field>
+      </div>
+
+      <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+
+
+      <div class="flex justify-end">
+        <button type="reset" class="rounded-lg px-10 py-2 mr-6 font-medium text-base bg-transparent border border-gray-200 text-gray-200 hover:bg-light-grey-600 " (click)="dismiss()">Cancel</button>
+        <button type="submit" class="rounded-lg px-10 py-2 font-medium text-base text-light-text bg-cyan-2 border border-cyan-2  p-2.5 hover:bg-transparent hover:text-cyan-2 transition-all duration-75 ease-in-out">Create</button>
+
+      </div>
+
+
+    </form>
+  </div>
+</ion-content>
