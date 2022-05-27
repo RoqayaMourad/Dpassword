@@ -1,0 +1,21 @@
+<ion-content>
+  
+<div class="p-4 max-w-full sm:p-6">
+
+  <!--  Search  -->
+  <div class="w-full">
+    <app-items-list-search></app-items-list-search>
+  </div>
+
+  <!--  Items list   -->
+  <ul class="mt-4 space-y-4">
+    <li>
+      <ng-container *ngFor="let item of filteredItems">
+          <app-single-list-item class="hover:bg-cyan-1" [item]="item"></app-single-list-item>
+      </ng-container>
+    </li>
+  </ul>
+
+</div>
+
+</ion-content>
