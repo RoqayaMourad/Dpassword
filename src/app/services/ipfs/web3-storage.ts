@@ -98,4 +98,21 @@ export class Web3Store {
 
   }
 
+  async storeDb(encrypteddb, private_key) {
+
+    const serverEncryptedDb = Security.encryptString(encrypteddb, private_key)
+    // convert encrypteddb string to file object
+    const buffer = Buffer.from(serverEncryptedDb);
+    const theStream = () => stream.Readable.from(buffer);
+
+    let node_file: any = {
+      name: "encrypteddb",
+      stream: theStream
+    }
+    const web3 = new Web3Store();
+
+    // upload to IPFS
+    const cidString = await web3.storeFiles(node_file);
+    return cidString
+  }
 }
