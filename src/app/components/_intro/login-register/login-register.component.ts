@@ -45,14 +45,18 @@ export class LoginRegisterComponent implements OnInit {
       return;
     }
     let ownershipToken = this.login_form.get("privatekey").value;
-    let password = this.login_form.get("password").value;
+    this.data.setMasterPassword(this.login_form.get("password").value);
     await this.data.show_loading();
 
     // get IPNS records
     let IPNSObj = HelperService.decodeFileNameAndPrivateKey(ownershipToken)
-    this.web3.getRecord(IPNSObj.filename)
+    this.data.IPNSObj = IPNSObj
+    await this.data.getCID()
     // get DB records
-    this.data.getDbFromIPFS()
+    await this.data.getDbFromIPFS();
+    // to update the list
+    this.data.filter$.next("");
+    await this.dissmiss();
     await this.data.dismiss_loading();
   }
 

@@ -1,10 +1,8 @@
 import { HelperService } from 'src/app/services/util/helper';
-import { Security } from './../../models/security.class';
 import { Filelike, getFilesFromPath, Web3Storage } from 'web3.storage'
 import * as Name from 'web3.storage/name'
 import { Revision } from 'web3.storage/name';
 import { Injectable } from '@angular/core';
-import { IEnctyptedDBObject } from 'src/app/interfaces/interfaces';
 
 @Injectable()
 export class Web3Store {
