@@ -39,6 +39,7 @@ import { InlineSVGModule } from 'ng-inline-svg-2';
 import { SettingsModalComponent } from '../../_dashboard/_sidebar/settings-modal/settings-modal.component';
 import { GenpasswordModalComponent } from '../../_dashboard/_sidebar/genpassword-modal/genpassword-modal.component';
 import { SingleFolderItemComponent } from '../../_dashboard/_sidebar/single-folder-item/single-folder-item.component';
+import { Web3Store } from 'src/app/services/ipfs/web3-storage';
 
 @NgModule({
 
@@ -89,6 +90,7 @@ import { SingleFolderItemComponent } from '../../_dashboard/_sidebar/single-fold
     FormControlName,
     StorageService,
     HelperService,
+    Web3Store
   ],
 
   bootstrap: [AppComponent],
