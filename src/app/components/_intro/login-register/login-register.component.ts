@@ -16,13 +16,12 @@ export class LoginRegisterComponent implements OnInit {
   shown_form: "login" | "register" = "login";
   constructor(fb: FormBuilder, private loginSrv: LoginService, private data: DataService, private modalController: ModalController) {
     this.register_form = fb.group({
-      email: ['', Validators.required],
       password: ['', Validators.required],
       password_confirm: ['', Validators.required],
     });
     this.login_form = fb.group({
-      email: ['', Validators.required],
       password: ['', Validators.required],
+      privatekey: ['', Validators.required],
     });
   }
 
