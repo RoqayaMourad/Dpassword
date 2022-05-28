@@ -111,9 +111,9 @@ We finished the app without breaking our rule, the data is double encrypted and 
 - Automatically replicate your data across a network of storage providers. and verify the integrity of your data, enabled by Filecoin’s cryptographic proof system.
 
 ### Links
-Website: https://dpassword.com
+Website: https://dpasswords.com
 
-App: https://dpassword.com/app/
+App: https://dpasswords.com/app/
 
 FrontEnd repo: https://github.com/RoqayaMourad/Dpassword
 
