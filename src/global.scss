@@ -171,7 +171,8 @@
 }
 .menuActive {
   .menuItem{
-    @apply bg-cyan-2 text-dark-4 cursor-pointer transition-all duration-75 ease-in-out;
+    @apply text-dark-4 cursor-pointer transition-all duration-75 ease-in-out;
+    background-color: #9eead1;
     svg {
       stroke: #121212;
     }
