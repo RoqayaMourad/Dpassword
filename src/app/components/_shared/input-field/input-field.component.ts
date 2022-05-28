@@ -17,7 +17,7 @@ export class InputFieldComponent implements OnInit {
   @Input() showReveal = false;
   @Input() showCopy = false;
   @Input() showGen = false;
-
+  random:string
   valueFormGroup?: FormGroup;
   valueFormControl?: FormControl;
   constructor(
@@ -28,6 +28,7 @@ export class InputFieldComponent implements OnInit {
   ngOnInit() {
     this.valueFormGroup = this.formGroupDirective.form;
     this.valueFormControl = this.formGroupDirective.getControl(this.formControlNameDirective);
+    this.random = HelperService.makeid(5)
   }
 
   get controlName() {

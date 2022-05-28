@@ -270,6 +270,8 @@ export class DataService {
       return true;
     } catch (error) {
       console.error(error)
+      this.alert("Wrong password");
+      throw error
     }
 
     this.IPFSState = lastState;

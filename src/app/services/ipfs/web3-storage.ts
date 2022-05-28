@@ -10,7 +10,7 @@ export class Web3Store {
   }
 
   private webstorage() {
-    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEVkQjI0QkU1ODg2MkYzRjcxRDZBODRlNUVCMDVBOWU4MWEzMmUzM0UiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NTM2NzMyNjAwMzMsIm5hbWUiOiJEQVNTV09SRF9GUkVFIn0.4oIl02O2zHTy_emZ_YEhHhuwUB4NV8gt38L0dRBZLoo"
+    return ""
   }
 
   private makeStorageClient() {

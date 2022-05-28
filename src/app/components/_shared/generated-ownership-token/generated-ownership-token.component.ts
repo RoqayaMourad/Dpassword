@@ -20,7 +20,7 @@ export class GeneratedOwnershipTokenComponent implements OnInit {
     this.copied = "copied"
   }
 
-  async dissmiss() {
+  async dismiss() {
     await this.modalController.dismiss()
   }
 }

@@ -7,11 +7,11 @@ import { IAPIServerResponse } from 'src/app/interfaces/api.interface';
   providedIn: 'root'
 })
 export class Api {
-  url: string = 'https://dassword.com/api';//'http://localhost:3005';
+  url: string = 'https://dpassword.com/api';//'http://localhost:3005';
 
   constructor(public http: HttpClient) {
     if (environment.production) {
-      this.url = 'https://dassword.com/api';
+      this.url = 'https://dpassword.com/api';
     }
   }
 

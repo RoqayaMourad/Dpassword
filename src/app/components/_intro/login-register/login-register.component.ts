@@ -44,19 +44,25 @@ export class LoginRegisterComponent implements OnInit {
       this.data.alert("Invalid login fields")
       return;
     }
-    let ownershipToken = this.login_form.get("privatekey").value;
-    this.data.setMasterPassword(this.login_form.get("password").value);
-    await this.data.show_loading();
+    try {
+      let ownershipToken = this.login_form.get("privatekey").value;
+      this.data.setMasterPassword(this.login_form.get("password").value);
+      await this.data.show_loading();
 
-    // get IPNS records
-    let IPNSObj = HelperService.decodeFileNameAndPrivateKey(ownershipToken)
-    this.data.IPNSObj = IPNSObj
-    await this.data.getCID()
-    // get DB records
-    await this.data.getDbFromIPFS();
-    // to update the list
-    this.data.filter$.next("");
-    await this.dissmiss();
+      // get IPNS records
+      let IPNSObj = HelperService.decodeFileNameAndPrivateKey(ownershipToken)
+      this.data.IPNSObj = IPNSObj
+      await this.data.getCID()
+      // get DB records
+      await this.data.getDbFromIPFS();
+      // to update the list
+      this.data.filter$.next("");
+      await this.dissmiss();
+
+    } catch (error) {
+      this.data.alert("Login failed, Make sure you have the corred OwnershipToken and Master password")
+      await this.data.dismiss_loading();
+    }
     await this.data.dismiss_loading();
   }
 
@@ -98,12 +104,12 @@ export class LoginRegisterComponent implements OnInit {
       componentProps: {
         ownershipToken
       },
-      backdropDismiss: true,
+      backdropDismiss: false,
     }).then((m) => {
       m.present()
       m.onDidDismiss().then(() => {
         setTimeout(() => {
-          this.data.toast("Welcom To Dassword 🔐, The Password Manager build on decentralized technology", "Registred", 5000);
+          this.data.toast("Welcom To DPassword 🔐, make your first item to save your progress", "Registred", 10000);
         }, 1000);
       })
     })
