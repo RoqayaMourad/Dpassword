@@ -115,5 +115,5 @@ Website: https://dpassword.com
 
 App: https://dpassword.com/app/
 
-FrontEnd repo: https://github.com/RoqayaMourad/dpassword
+FrontEnd repo: https://github.com/RoqayaMourad/Dpassword
 
