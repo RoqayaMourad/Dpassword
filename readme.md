@@ -107,7 +107,6 @@ We finished the app without breaking our rule, the data is double encrypted and 
 
 ## How it implements IPFS & Filecoin ?
 
-- Backend as IPFS relay to store data to IPFS and retrieve it.
 - Web3.storage as a service,  which uses the decentralized storage provided by the Filecoin ⨎ network, and rewards nodes based on storage.
 - Automatically replicate your data across a network of storage providers. and verify the integrity of your data, enabled by Filecoin’s cryptographic proof system.
 
