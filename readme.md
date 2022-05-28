@@ -1,5 +1,4 @@
-![DPassword logo]
-(https://res.cloudinary.com/dbmjocdgi/image/upload/v1653704335/dpassword-cover_sftst6.jpg)
+![DPassword logo] (https://res.cloudinary.com/dbmjocdgi/image/upload/v1653704335/dpassword-cover_sftst6.jpg)
 
 The first Decentralized password manager
 
@@ -54,17 +53,13 @@ You can store your credit cards, personal files, personal notes, and sensitive f
 
 *WE designed a specific flow of data to make sure the master password is only used for data encryption zero knowledge login authentication (SHA-3)*
 
-![Data Access Component]
-(https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/4_lkep9z.jpg)
+![Data Access Component](https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/4_lkep9z.jpg)
 
-![CID locating]
-(https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/5_dvklpy.jpg)
+![CID locating](https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/5_dvklpy.jpg)
 
-![Uploading to IPFS]
-(https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/6_prdoad.jpg)
+![Uploading to IPFS](https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/6_prdoad.jpg)
 
-![Retrieval from IPFS]
-(https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/7_ijphk2.jpg)
+![Retrieval from IPFS](https://res.cloudinary.com/dbmjocdgi/image/upload/v1653708784/7_ijphk2.jpg)
 
 
 **The master password is never stored on your local storage or transmitted**
