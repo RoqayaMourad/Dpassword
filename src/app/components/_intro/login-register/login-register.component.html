@@ -1,9 +1,9 @@
 <ion-content>
-  <div class="bg-grey-400 h-full overflow-hidden">
+  <div class="bg-light-2 h-full overflow-hidden">
     <div class="flex flex-wrap h-full">
       <div class="lg:w-1/2 md:w-1/2 w-full flex flex-col items-center justify-center shadow-lg bg-light-1 bg-net-bg bg-bottom">
         <div class="w-full mb-14 px-12">
-          <img class="w-full" src="/assets/brand/logo-rounded.svg">
+          <img class="w-full" src="/assets/brand/logo-rounded-black.svg">
         </div>
         <div class="text-center">
           <p class="font-semibold text-[2rem] text-cyan-2 mb-4">Welcome To Dassword</p>
@@ -25,10 +25,10 @@
           </li>
         </ul>
       </div>
-        <div>
+        <div class="w-1/2 mx-auto">
           <!-- Login Tab -->
           <div *ngIf="shown_form == 'login'" class="active">
-            <form class="flex flex-col" [formGroup]="login_form">
+            <form class="" [formGroup]="login_form">
               <div class="mb-6">
                 <app-input-field label="Master Password" type="password" formControlName="password"
                   ngDefaultControl [showReveal]="true" [showCopy]="true"></app-input-field>

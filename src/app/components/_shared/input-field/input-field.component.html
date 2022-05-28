@@ -1,8 +1,6 @@
 <div [formGroup]="valueFormGroup" class="relative">
   <label *ngIf="label" [for]="controlName+'_'+'type'" class="block mb-2 text-sm font-medium text-cyan-2">{{label}}</label>
-
   <div class="relative">
-
     <!-- If input -->
     <input
       *ngIf="type != 'textarea'"
@@ -11,9 +9,8 @@
       [name]="controlName"
       [formControlName]="controlName"
 
-      class="shadow-sm text-light-grey-100 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-grey-500 block w-full p-2.5"
+      class="shadow-lg text-light-4 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-light-1 block w-full p-2.5"
       [placeholder]="placeholder">
-
     <!-- If Textarea -->
     <textarea
       *ngIf="type == 'textarea'"
@@ -21,10 +18,9 @@
       [id]="controlName+'_'+type"
       [name]="controlName"
       [formControlName]="controlName"
-      class="shadow-sm text-light-grey-100 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-grey-500 block w-full p-2.5"
+      class="shadow-lg text-light-4 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-light-1 block w-full p-2.5"
       [placeholder]="placeholder">
   </textarea>
-
     <div class="fieldIcons">
       <button class="inline-block" type="button" *ngIf="showReveal == true" (click)="revealPass()">
         <div *ngIf="type === 'password'" class='revealDiv' [inlineSVG]="'/assets/icon/eye.svg'"></div>

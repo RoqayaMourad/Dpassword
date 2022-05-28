@@ -1,5 +1,32 @@
-<textarea (click)="copy()">
-  {{ownershipToken}}
-</textarea>
-<p>Proof of ownership token, this is token is used to access your encrypted database, KEEP THIS TOKEN SAFE TO LOGIN AGAIN</p>
-<small>{{copied}}</small>
+<ion-content>
+  <div class="bg-light-2 rounded-md pt-8 px-16 my-auto h-full">
+    <div class="flex">
+      <div class="justify-center w-full">
+        <img src="/assets/brand/logo-rounded.svg" width="50%" class="mx-auto" alt="" srcset="">
+      </div>
+    </div>
+    <div class="flex flex-col justify-between mt-16 ">
+      <div class="flex flex-col justify-between">
+      <div class="">
+        <textarea class="shadow-lg text-light-4 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-light-1 block w-full p-2 h-28" (click)="copy()">
+          {{ownershipToken}}
+      </textarea>
+      </div>
+    
+      <div class="mt-6">
+        <p class="text-xl text-grey-100">
+          Proof of ownership token, this is token is used to access your encrypted database, <span class="text-cyan-2">
+             KEEP THIS TOKEN SAFE TO
+          LOGIN AGAIN!
+          </span>
+        </p>
+      </div>
+      </div>
+      <div class="mt-6" >
+        <small>{{copied}}</small>
+      </div>
+
+    </div>
+  </div>
+</ion-content>
+

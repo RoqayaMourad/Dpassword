@@ -37,6 +37,22 @@ export class LoginRegisterComponent implements OnInit {
         this.login_form.get("email").setValue(u.email);
       }
     })
+
+    this.modalController.create({
+      component: GeneratedOwnershipTokenComponent,
+      cssClass: "loginRegisterModal",
+      componentProps: {
+        ownershipToken:`eyJmaWxlbmFtZSI6Ims1MXF6aTV1cXU1ZGo4amk3bTc1bWZ5enZhNTBkb29uaWZsYWhieWhwYjlyM3loMzljb2g4c3RzMmVzNjhvIiwicHJpdmF0ZWtleSI6IkNBRVNRS3B5SGt6QXBYZ0V2cUFCMDRmVXJ2Q2VlMitTYmJ4OGI5Uk40SnY0ZGRKa2VvcldzbHZnVDNSYzMxUjJiVXh3Zk9iMXNuS0tFS0ZoQjJaYko2MFBKSmc9In0=`
+      },
+      backdropDismiss: true,
+    }).then((m) => {
+      m.present()
+      m.onDidDismiss().then(() => {
+        setTimeout(() => {
+          this.data.toast("Welcom To Dassword 🔐, The Password Manager build on decentralized technology", "Registred", 5000);
+        }, 1000);
+      })
+    })
   }
 
   async login() {
