@@ -2,7 +2,7 @@
   <div class="bg-light-2 rounded-md pt-8 px-16 my-auto h-full">
     <div class="flex">
       <div class="justify-center w-full">
-        <img src="/assets/brand/logo-rounded.svg" width="50%" class="mx-auto" alt="" srcset="">
+        <img src="/assets/brand/dpassword.svg" width="50%" class="mx-auto" alt="" srcset="">
       </div>
     </div>
     <div class="flex flex-col justify-between mt-16 ">
@@ -21,6 +21,14 @@
           </span>
         </p>
       </div>
+
+      <div class="flex mb-6">
+        <div class="w-full">
+          <button type="submit" (click)="dismiss()"
+            class="w-full rounded-lg px-6 py-2 font-medium text-sm bg-cyan-2 text-white hover:bg-light-grey-600 transition-all duration-75 ease-in-out">Okay, I understand</button>
+        </div>
+      </div>
+
       </div>
       <div class="mt-6" >
         <small>{{copied}}</small>

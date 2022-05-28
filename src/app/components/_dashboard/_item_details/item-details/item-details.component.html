@@ -1,6 +1,6 @@
 <ion-content>
   <div class="p-4">
-    <div *ngIf="currentItem" class="rounded-md p-4 mt-2">
+    <div *ngIf="currentItem" class="rounded-md p-4 mt-2 bg-light-2 shadow-md shadow-light-grey-100">
 
       <app-item-header [title]='currentItem.name' [iconUrl]="currentItem.icon"></app-item-header>
 
@@ -103,7 +103,7 @@
 
         </div>
 
-        <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+        <div class="my-4 spliter border-b-2 border-grey-50 m-auto"></div>
 
         <div class="flex rounded-md shadow-sm justify-end ml-auto" role="group">
           <button type="button" class="inline-flex items-center py-2 px-4 text-sm font-medium text-light-grey-50 bg-transparent rounded-l-lg border border-light-grey-100 hover:bg-cyan-2 hover:text-light-text hover:border-transparent transition ease-in duration-200 " (click)="comingSoon()">

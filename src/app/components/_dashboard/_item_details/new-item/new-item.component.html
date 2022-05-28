@@ -1,10 +1,10 @@
 <ion-content>
-  <div class="bg-grey-400 rounded-md pt-8 px-16 my-auto h-full">
+  <div class="bg-light-2 rounded-md pt-8 px-16 my-auto h-full">
     <form class="newItemForm" [formGroup]="DetailsForm" (ngSubmit)="onSubmit()">
 
       <div class="flex">
         <div class="justify-center w-full">
-          <img src="/assets/brand/logo-rounded.svg" width="50%" class="mx-auto" alt="" srcset="">
+          <img src="/assets/brand/dpassword.svg" width="50%" class="mx-auto" alt="" srcset="">
         </div>
       </div>
 
@@ -17,7 +17,7 @@
           <button
             type="button"
             (click)="toggleSelect()"
-            class="flex w-full items-center justify-between shadow-sm text-light-grey-100 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-grey-500 p-2.5"
+            class="flex w-full items-center justify-between shadow-md text-light-grey-100 text-sm rounded-lg focus:ring-light-grey-700 focus:outline-none bg-light-1 p-2.5"
             [ngClass]="typeSelectOpen?'':'ring-gray-300'">
             <span>{{type}}</span>
             <!-- X icon svg -->
@@ -26,7 +26,7 @@
             </svg>
           </button>
           <!-- list items -->
-          <ul class="z-2 absolute w-full rounded bg-grey-500 z-50" *ngIf="typeSelectOpen">
+          <ul class="z-2 absolute w-full rounded bg-light-1 z-50" *ngIf="typeSelectOpen">
             <li class="cursor-pointer select-none p-2 text-light-grey-100 hover:bg-grey-100" (click)="setType('Password')">
               Password
             </li>
@@ -50,7 +50,7 @@
 
 
       <!-- spliter -->
-      <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+      <div class="my-4 spliter border-b-2 border-light-grey-50 m-auto"></div>
 
 
       <!-- App header
@@ -106,7 +106,7 @@
         <app-input-field *ngIf="showDocument" label="Upload file" type="file" subtext="Your Personal Files Will be Safe Here" formControlName="file" ngDefaultControl></app-input-field>
       </div>
 
-      <div class="my-4 spliter border-b-2 border-grey-300 m-auto"></div>
+      <div class="my-4 spliter border-b-2 border-light-grey-50 m-auto"></div>
 
 
       <div class="flex justify-end">
