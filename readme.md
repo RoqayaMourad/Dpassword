@@ -1,4 +1,4 @@
-![DPassword logo] (https://res.cloudinary.com/dbmjocdgi/image/upload/v1653704335/dpassword-cover_sftst6.jpg)
+![DPassword logo](https://res.cloudinary.com/dbmjocdgi/image/upload/v1653704335/dpassword-cover_sftst6.jpg)
 
 The first Decentralized password manager
 
